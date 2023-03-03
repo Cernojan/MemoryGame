@@ -7,8 +7,6 @@ const images = [];
   }
 
   images[18] = "https://picsum.photos/200/200?random=18";
-
-  alert(images);
   
   let gameContainer = document.getElementById("game");
   let firstImage = null;
@@ -28,11 +26,16 @@ const images = [];
     gameContainer.innerHTML = "";
     shuffle(images);
     for (let i = 0; i < images.length; i++) {
+      let parentElement = document.createElement("div")
+      parentElement.setAttribute("class", "card")
+
       let image = document.createElement("img");
       image.setAttribute("src", images[i]);
+      image.setAttribute("class", "mrdat");
       image.setAttribute("data-index", i);
       image.addEventListener("click", onImageClick);
-      gameContainer.appendChild(image);
+      parentElement.appendChild(image);
+      gameContainer.appendChild(parentElement);
     }
   }
   
