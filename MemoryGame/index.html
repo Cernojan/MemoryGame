@@ -1,17 +1,45 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<meta charset="UTF-8">
 	<title>Memory hra</title>
 	<link rel="stylesheet" type="text/css" href="style.css">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.4/dist/sweetalert2.min.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.4/dist/sweetalert2.min.css">
 </head>
 <body>
-	<div id="game"></div>
-	<div id="timer"></div>
-	<div id="level">Kolo 1</div>
-    <button onclick="startGame()">Start</button>
-
+	<div class="content">
+			<div id="help">
+				<span style="width: 100%">
+					<button id="back" style="all:unset" onclick="goBackToMenu()"><img class="img-menu" src="images/components/Back.png" /></button>
+				</span>
+				<span style="text-align:justify;width: 80%; margin-left: auto;margin-right: auto;">
+					Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Duis pulvinar. Fusce dui leo, imperdiet in, aliquam sit amet, feugiat eu, orci. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Aenean fermentum risus id tortor. Duis viverra diam non justo. Nulla non arcu lacinia neque faucibus fringilla. Nullam eget nisl. Integer vulputate sem a nibh rutrum consequat. Integer lacinia. Nullam sapien sem, ornare ac, nonummy non, lobortis a enim. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aenean vel massa quis mauris vehicula lacinia. Vestibulum erat nulla, ullamcorper nec, rutrum non, nonummy ac, erat. Sed vel lectus. Donec odio tempus molestie, porttitor ut, iaculis quis, sem. Nulla turpis magna, cursus sit amet, suscipit a, interdum id, felis. Nunc tincidunt ante vitae massa. Proin mattis lacinia justo. Nunc tincidunt ante vitae massa. Integer rutrum, orci vestibulum ullamcorper ultricies, lacus quam ultricies odio, vitae placerat pede sem sit amet enim.
+		
+					Morbi leo mi, nonummy eget tristique non, rhoncus non leo. Fusce nibh. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aenean vel massa quis mauris vehicula lacinia. Sed convallis magna eu sem. Nullam sapien sem, ornare ac, nonummy non, lobortis a enim. Praesent vitae arcu tempor neque lacinia pretium. Integer pellentesque quam vel velit. Pellentesque ipsum. Praesent in mauris eu tortor porttitor accumsan. Nulla quis diam. Vivamus porttitor turpis ac leo.
+		
+					Integer in sapien. Praesent vitae arcu tempor neque lacinia pretium. Nulla quis diam. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Suspendisse sagittis ultrices augue. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat. Fusce dui leo, imperdiet in, aliquam sit amet, feugiat eu, orci. Nullam rhoncus aliquam metus. Morbi imperdiet, mauris ac auctor dictum, nisl ligula egestas nulla, et sollicitudin sem purus in lacus. Praesent id justo in neque elementum ultrices. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Nulla non lectus sed nisl molestie malesuada.
+		
+					Phasellus faucibus molestie nisl. Etiam neque. Duis condimentum augue id magna semper rutrum. Fusce tellus odio, dapibus id fermentum quis, suscipit id erat. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aliquam erat volutpat. In enim a arcu imperdiet malesuada. Morbi leo mi, nonummy eget tristique non, rhoncus non leo. Pellentesque sapien. Nulla est. Praesent in mauris eu tortor porttitor accumsan. Fusce wisi. Fusce dui leo, imperdiet in, aliquam sit amet, feugiat eu, orci. Integer rutrum, orci vestibulum ullamcorper ultricies, lacus quam ultricies odio, vitae placerat pede sem sit amet enim. Ut tempus purus at lorem. Duis ante orci, molestie vitae vehicula venenatis, tincidunt ac pede. Suspendisse sagittis ultrices augue. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Mauris suscipit, ligula sit amet pharetra semper, nibh ante cursus purus, vel sagittis velit mauris vel metus. In enim a arcu imperdiet malesuada.
+				</span>
+			</div>
+			<div id="gameData">
+				<div id="timer" style="font-size: xxx-large"></div>
+				<div id="level" style="display:none">Úroveň 1</div>
+				<div id="game"></div>
+			</div>
+			<div id="gameSettings">
+				<button value="3" id="level3" class="menuSettingsButton">3 Úrovně</button>
+				<button value="6" id="level6" class="menuSettingsButton active">6 Úrovní</button>
+				<button value="9" id="level9" class="menuSettingsButton">9 Úrovní</button>
+			</div>
+			<div id="buttons" style="display:inline-block">
+				<button style="all:unset"><img style="margin-top: 10px;" class="img-menu" src="images/components/Home.png" /></button>
+				<button style="all:unset" onclick="showHelp()"><img class="img-menu" src="images/components/Help.png" /></button>
+				<button id="startGame" style="all:unset;" onclick="startGame()"><img class="img-menu" src="images/components/StartGame.png" /></button>
+			</div>
+			<button id="exit" style="all:unset;display: none;" onclick="exitGame()"><img class="img-menu" src="images/components/Home.png" /></button>
+	</div>
 	<script src="test.js"></script>
 </body>
 </html>
