@@ -255,10 +255,10 @@ wrapper.addEventListener('click', (e) => {
     return;
   }
   
-  e.target.classList.add('active'); // Add .active CSS Class
+  e.target.classList.add('active'); 
 
   if(prevButton !== null) {
-    prevButton.classList.remove('active');  // Remove .active CSS Class
+    prevButton.classList.remove('active');
   }
   
   prevButton = e.target;
