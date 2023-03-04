@@ -1,5 +1,5 @@
 body {
-    background-color: red;
+    background-color: #f8f8f8;
     font-family: sans-serif;
     text-align: center;
     margin: 0;
@@ -26,7 +26,7 @@ h1 {
     width: 120px;
     height: 120px;
     background-color: #fff;
-    border-radius: 10px;
+    border-radius: 14px;
     margin: 10px;
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
     cursor: pointer;
@@ -34,11 +34,11 @@ h1 {
 }
 
 .card img {
-    display: block;
-    margin: 10px auto;
-    width: 80px;
-    height: 80px;
+    display: inline;
+    width: 100%;
+    height: 100%;
     object-fit: contain;
+    border-radius: 10px;
 }
 
 .card:hover {
@@ -63,8 +63,14 @@ h1 {
     margin-top: 20px;
 }
 
-.selected {
-    color: red;
-    background-color: red;
+.selected-success {
+    border: 4px solid #00bf00;
+}
 
+.selected-error {
+    border: 4px solid red;
+}
+
+.selected {
+    border: 4px solid blue;
 }

@@ -1,13 +1,22 @@
 const images = [];
+let level = 1;
 
+function getRandomInteger(min, max) {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
 
-  for (i = 0; i <=18;i++) {
-    images[i] = "https://picsum.photos/200/200?random=" + (i + 1);
+function generateImages() {
+  let j = getRandomInteger(1, 4);
+  images.length = 0;
 
+  for (i = j; i <= (j + 4); i++) {
+    images.push("https://picsum.photos/300/300?random=" + i);
+    console.log(i);
   }
-
-  images[18] = "https://picsum.photos/200/200?random=18";
   
+  images.push(images[Math.ceil(Math.random(1, 5))]);
+}
+
   let gameContainer = document.getElementById("game");
   let firstImage = null;
   let secondImage = null;
@@ -23,6 +32,7 @@ const images = [];
   
   // Generate the game board with shuffled images
   function generateGameBoard() {
+    generateImages();
     gameContainer.innerHTML = "";
     shuffle(images);
     for (let i = 0; i < images.length; i++) {
@@ -31,7 +41,6 @@ const images = [];
 
       let image = document.createElement("img");
       image.setAttribute("src", images[i]);
-      image.setAttribute("class", "mrdat");
       image.setAttribute("data-index", i);
       image.addEventListener("click", onImageClick);
       parentElement.appendChild(image);
@@ -49,43 +58,64 @@ const images = [];
     if (firstImage === null) {
       // First image click
       firstImage = clickedImage;
-      firstImage.setAttribute("class", "selected");
+
+      if (!firstImage.parentElement.className.includes("selected")) {
+        firstImage.parentElement.className += ' selected';
+      }
     } else if (secondImage === null && clickedImageIndex !== parseInt(firstImage.getAttribute("data-index"))) {
       // Second image click
       secondImage = clickedImage;
-      secondImage.setAttribute("class", "selected");
+
       if (firstImage.getAttribute("src") === secondImage.getAttribute("src")) {
-        // Match found
-        firstImage = null;
-        secondImage = null;
-        checkGameEnd();
+        secondImage.parentElement.className += ' selected-success';
+
+        if (firstImage.parentElement.className.includes("selected")) {
+          firstImage.parentElement.className += '-success';
+        }
       } else {
-        // No match found
-        isPlaying = false;
-        setTimeout(function() {
-          firstImage.removeAttribute("class");
-          secondImage.removeAttribute("class");
+        firstImage.parentElement.className += '-error';
+        secondImage.parentElement.className += ' selected-error';
+      }
+
+      
+      setTimeout(() => {
+        if (firstImage.getAttribute("src") === secondImage.getAttribute("src")) {
+          // Match found
+          firstImage = null;
+          secondImage = null;
+          checkGameEnd();
+        } else {  
+          firstImage.parentElement.classList.remove("selected-error");
+          secondImage.parentElement.classList.remove("selected-error");
+  
+          firstImage.removeAttribute("data-index")
+          secondImage.removeAttribute("data-index")
+  
           firstImage = null;
           secondImage = null;
           isPlaying = true;
-        }, 1000);
-      }
+        }
+      }, "1000");
     }
   }
   
   // Check if the game has ended
-  function checkGameEnd() {
-    let matchedImages = gameContainer.querySelectorAll(".selected");
+  function checkGameEnd(images) {
+    let matchedImages = gameContainer.querySelectorAll(".selected-success");
     if (matchedImages.length === 2) {
+      if (level === 5) {
         isPlaying = false;
         Swal.fire({
-            title: 'Congratulations!',
-            text: 'You won the game!',
+            title: 'Gratulujeme',
+            text: 'Vyhrál jsi! Mrdko!',
             icon: 'success',
-            confirmButtonText: 'Play again'
+            confirmButtonText: 'Pokračovat'
           }).then(() => {
             window.location.reload();
           });
+        } else {
+            nextLevel();
+          }
     }
   }
   
@@ -94,3 +124,26 @@ const images = [];
     generateGameBoard();
     isPlaying = true;
   }
+
+  function nextLevel() {
+      startGame();
+      level++;
+      document.getElementById("level").innerHTML = "Kolo " + level;
+  }
+
+
+  let min = 0;
+  let sec = 1;
+
+function myTimer() {
+  document.getElementById("timer").innerHTML = min + " sekund " + sec + " sekund";
+  sec++;
+  if (sec >= 60) {
+    sec = 0;
+    min++;
+  }
+}
+
+  document.addEventListener('click', () => {
+    setInterval(myTimer, 1000);
+  }, { once: true });
